@@ -1,6 +1,6 @@
 "use client";
 
-import { LoginResponse } from "@/services/types";
+import { LoginResponse } from "@/types";
 import { IUser } from "@/types";
 import { createContext, useContext, useEffect, useState } from "react";
 import { JSX } from "react/jsx-runtime";

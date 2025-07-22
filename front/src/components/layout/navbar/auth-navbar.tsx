@@ -11,20 +11,20 @@ import Loader from "@/components/ui/loader/loader";
 import { useCartContext } from "@/context/cartContext";
 
 export const AuthNavbar = () => {
-  const { isAuth, resetUserData } = useAuthContext();
+  const { isAuth, resetUserData, user } = useAuthContext();
   // Replace with actual authentication logic
   // Dummy user object for demonstration; replace with actual user data from context or props
   const pathname = usePathname();
   const { total, resetCart } = useCartContext();
 
-  const user = {
-    id: 1,
-    name: "Lucas",
-    email: "lucas@example.com",
-    address: "123 Main St, Springfield",
-    phone: "123-456-7890",
-    role: "user",
-  };
+  // const user = {
+  //   id: 1,
+  //   name: "user",
+  //   email: "",
+  //   address: "",
+  //   phone: "",
+  //   role: "user",
+  // };
   const logout = () => {
     resetUserData();
     resetCart();
@@ -69,7 +69,7 @@ export const AuthNavbar = () => {
       <div className="flex items-center space-x-2 rtl:space-x-reverse">
         <Link href={routes.profile} className="flex items-center space-x-2">
           <LuUserRound className="w-6 h-6 text-primary-700" />
-          <span className="font-medium cursor-pointer">{user.name}</span>
+          <span className="font-medium cursor-pointer">{user?.name}</span>
         </Link>
       </div>
       <div onClick={logout} className="cursor-pointer">
