@@ -80,12 +80,14 @@ const LoginForm = () => {
       }
       toast.success("Iniciaste Sesión Correctamente");
 
-      saveUserData(res.data);
+      if (res.data) {
+        saveUserData(res.data);
+      }
 
       setTimeout(() => {
         router.push(routes.home); // Redirigir al usuario a la página principal o donde desees
       }, 2000);
-    } catch (error: unknown) {
+    } catch {
       toast.error("Ocurrió un error al iniciar sesión");
     } finally {
       setTimeout(() => {

@@ -27,7 +27,9 @@ const OrdersList = () => {
             setLoading(false);
         }
     }
-  typeof token === "string" && request();
+  if (typeof token === "string") {
+    request();
+  }
    }, [token]);
 
 if (loading){

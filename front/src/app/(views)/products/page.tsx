@@ -10,10 +10,9 @@ import clsx from 'clsx'
 async function ProductsPage({
   searchParams,
 }: {
-  searchParams?: Promise<SearchParams<{ category: string }>>
+  searchParams?: { category?: string }
 }) {
-  const resolvedSearchParams = await searchParams;
-  const { category = undefined } = resolvedSearchParams || {};
+  const { category = undefined } = searchParams || {};
 
   const products = await getProdutsByCategory(category || 'all');
 

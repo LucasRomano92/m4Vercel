@@ -12,8 +12,6 @@ export interface IProduct  {
     ADMIN = "admin"
   }
 
-  type Params<T> = Promise<T>
-  type SearchParams<T> = Promise<T>
 
  export interface IOrder {
   id: number;

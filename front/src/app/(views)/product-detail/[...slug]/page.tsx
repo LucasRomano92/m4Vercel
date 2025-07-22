@@ -1,18 +1,10 @@
-import React from "react";
-
-import { routes } from "@/routes";
-import { redirect } from "next/navigation"; // ✅ Usar directamente desde "next/navigation"
+import { redirect } from "next/navigation";
 import { getProductById } from "@/services/products";
 import AddCartButton from "@/components/ui/product-card/add-cart-button";
+import { routes } from "@/routes";
 
-interface PageProps {
-  params: {
-    slug?: string[];
-  };
-}
-
-export default async function Page({ params }: PageProps) {
-  const slug = params.slug ?? []; // ✅ sin Promise.resolve
+export default async function Page({ params }: { params: { slug?: string[] } }) {
+  const slug = params.slug ?? [];
   const [id] = slug;
 
   const product = await getProductById(Number(id));
@@ -23,7 +15,7 @@ export default async function Page({ params }: PageProps) {
   return (
     <div className="max-w-2xl mx-auto my-10 overflow-hidden border border-gray-200 shadow-lg bg-primary-200 rounded-xl">
       <div className="flex flex-col md:flex-row">
-        {product.image && (
+        {product?.image && (
           <div className="flex items-center justify-center p-6 md:w-1/2 bg-primary-200">
             <img
               src={product.image}

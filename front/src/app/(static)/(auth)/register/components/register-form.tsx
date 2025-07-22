@@ -80,8 +80,8 @@ const RegisterForm = () => {
            setTimeout(() => {
                   router.push(routes.login); // Redirigir al usuario a la página de inicio de sesión
                 }, 2000);
-        } catch (error) {
-          toast.error("Ocurrió un error al registrar el usuario", error);
+        } catch {
+          toast.error("Ocurrió un error al registrar el usuario");
         } finally {
           setSubmitting(false);
         }

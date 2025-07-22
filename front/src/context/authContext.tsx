@@ -9,7 +9,7 @@ type AuthContextType = {
   isAuth: boolean;
   user: IUser | null;
   token: string | null;
-  saveUserData: (data: any) => void;
+  saveUserData: (data: LoginResponse) => void;
   resetUserData: () => void;
 };
 const AUTH_KEY = "authData";
@@ -21,7 +21,7 @@ export const AuthProvider = ({
 }: {
   children: React.ReactNode;
 }): JSX.Element => {
-  const [isAuth, setIsAuth] = useState<boolean | null>(null);
+  const [isAuth, setIsAuth] = useState<boolean>(false);
   const [user, setUser] = useState<IUser | null>(null);
   const [token, setToken] = useState<string | null>(null);
 
@@ -47,14 +47,14 @@ export const AuthProvider = ({
 
     if (storage === undefined || !Object.keys(storage).length) {
       setIsAuth(false);
-      setToken("");
+      setToken(null);
       return;
     }
-    const storageType = storage as any;
+    const storageType = storage as LoginResponse;
 
-    setUser(storage?.user);
-    setToken(storageType.token);
-    setIsAuth(storage?.login);
+    setUser(storageType?.user);
+    setToken(storageType?.token);
+    setIsAuth(!!storageType?.token);
   }, []);
 
   return (
