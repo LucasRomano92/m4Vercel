@@ -3,8 +3,9 @@ import { getProductById } from "@/services/products";
 import AddCartButton from "@/components/ui/product-card/add-cart-button";
 import { routes } from "@/routes";
 
-export default async function Page({ params }: { params: { slug?: string[] } }) {
-  const slug = params.slug ?? [];
+export default async function Page({ params }: { params: Promise<{ slug?: string[] }> }) {
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug ?? [];
   const [id] = slug;
 
   const product = await getProductById(Number(id));

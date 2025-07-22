@@ -6,16 +6,15 @@ import Link from 'next/link';
 import { routes } from '@/routes';
 import clsx from 'clsx'
 
-
 async function ProductsPage({
   searchParams,
 }: {
-  searchParams?: { category?: string }
+  searchParams?: Promise<{ category?: string }>
 }) {
-  const { category = undefined } = searchParams || {};
+  const resolvedSearchParams: { category?: string } = await (searchParams || Promise.resolve({}));
+  const { category = undefined } = resolvedSearchParams;
 
   const products = await getProdutsByCategory(category || 'all');
-
 
   return (
     <div style={{ display: 'flex', gap: '2rem' }}>
@@ -48,5 +47,3 @@ async function ProductsPage({
   );
 };
 export default ProductsPage;
-
-
