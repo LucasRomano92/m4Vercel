@@ -1,0 +1,8 @@
+{
+  "projects": [
+    {
+      "src": "front",
+      "use": "@vercel/next"
+    }
+  ]
+}
