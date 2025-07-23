@@ -5,7 +5,16 @@ import morgan from "morgan";
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'https://tu-proyecto-vercel.vercel.app', // Cambia por tu URL real de Vercel
+    'https://*.vercel.app', // Para todas las previews de Vercel
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 app.use(express.json());
 app.use(morgan("dev"));
 
