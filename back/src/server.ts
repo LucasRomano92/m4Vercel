@@ -8,7 +8,7 @@ const app = express();
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'https://tu-proyecto-vercel.vercel.app', // Cambia por tu URL real de Vercel
+    'https://m4-vercel2.vercel.app/', // Cambia por tu URL real de Vercel
     'https://*.vercel.app', // Para todas las previews de Vercel
   ],
   credentials: true,
